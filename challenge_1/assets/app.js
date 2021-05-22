@@ -98,6 +98,22 @@ export default class App
         $('input[name=edit_user_name]').val(user.name)
         $('input[name=edit_user_bio]').val(user.bio)
         $('input[name=edit_user_location]').val(user.location)
+        $('button.btn-delete-user').attr('data-userid', user.id)
+    }
+
+    deleteUser(userID)
+    {
+        $(`table.users-table tbody tr[data-row=${userID}]`).remove()
+
+        if (!$('.box-user-action').hasClass('d-none')) {
+            $('.box-user-action').addClass('d-none')
+        }
+
+        $('img.edit_user_photo').attr('src', '')
+        $('input[name=edit_user_name]').val('')
+        $('input[name=edit_user_bio]').val('')
+        $('input[name=edit_user_location]').val('')
+        $('button.btn-delete-user').attr('data-userid', '')
     }
 
     test()

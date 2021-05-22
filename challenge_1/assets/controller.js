@@ -18,5 +18,9 @@ $('button.show-user-info').click(element => {
     console.log(element)
 })
 
+$('button.btn-delete-user').click(({target}) => {
+    app.deleteUser(target.dataset.userid)
+})
+
 // CassiaSotolani
 // Ryan-Maia
