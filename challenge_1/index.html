@@ -9,7 +9,7 @@
         <link rel="stylesheet" href="./libs/bootstrap-5.0.1-dist/css/bootstrap.css">
     </head>
     <body>
-        <main id="app">
+        <main>
             <div class="container mt-5">
                 <div class="row  mb-5 user-card-preview d-none">
                     <div class="col col-3 ms-auto">
@@ -21,6 +21,21 @@
                         <p class="m-0 user-location">####</p>
                         <button class="text-uppercase register-user btn btn-success btn-sm mt-2">cadastrar</button>
                         <button class="text-uppercase cancel-user btn btn-danger btn-sm mt-2">cancelar</button>
+                    </div>
+                </div>
+
+                <div class="box-user-action mb-5 d-none">
+                    <div class="row">
+                        <div class="col col-6 mx-auto">
+                            <form action="#" class="edit">
+                                <img width="100" height="100" class="d-block edit_user_photo mb-2" src="https://via.placeholder.com/150" alt="user">
+                                <input type="text" name="edit_user_name" class="form-control mb-2">
+                                <input type="text" name="edit_user_bio" class="form-control mb-2">
+                                <input type="text" name="edit_user_location" class="form-control mb-2">
+                                <button class="btn btn-danger btn-sm">deletar usuário</button>
+                                <button class="btn btn-success btn-sm">salvar</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
 
@@ -36,6 +51,22 @@
                             </button>
                         </div>
                     </form>
+                </div>
+
+                <div class="row mt-5">
+                    <div class="col col-6 mx-auto">
+                        <table class="table users-table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Nome</th>
+                                    <th scope="col">Bio</th>
+                                    <th scope="col">Localidade</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </main>
