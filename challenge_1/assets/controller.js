@@ -9,3 +9,7 @@ $('#search-form button').click(async () => {
 
     app.setUserPreview(userData)
 })
+
+$('button.register-user').click(() => {
+    app.registerUser()
+})

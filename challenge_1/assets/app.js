@@ -7,6 +7,7 @@ export default class App
         this.app = {
             api_url: "https://api.github.com",
 
+            user: {},
             users: []
         }
     }
@@ -21,6 +22,8 @@ export default class App
 
     setUserPreview(user)
     {
+        this.user = user
+
         const boxUserPreview = $('.user-card-preview')
         const userPhoto = $('.user-photo')
         const userName = $('.user-name')
@@ -35,5 +38,25 @@ export default class App
         userName.html(user.name)
         userBio.html(user.bio)
         userLocation.html(user.location)
+    }
+
+    registerUser()
+    {
+        this.app.users.push(
+            {
+                photo: this.user.avatar_url,
+                name: this.user.name,
+                bio: this.user.bio,
+                location: this.user.location
+            }
+        )
+
+        if (! $('.user-card-preview').hasClass('d-none')) {
+            $('.user-card-preview').addClass('d-none')
+        }
+
+        this.app.user = {}
+
+        console.log(this.app.users)
     }
 }
