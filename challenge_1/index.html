@@ -11,9 +11,30 @@
     <body>
         <main id="app">
             <div class="container mt-5">
+                <div class="row  mb-5 user-card-preview d-none">
+                    <div class="col col-3 ms-auto">
+                        <img class="d-block mx-auto user-photo" width="150" height="150" src="https://via.placeholder.com/150" alt="user profile photo">
+                    </div>
+                    <div class="col col-3 me-auto text-center p-3 user-data">
+                        <h6 class="user-name">####</h6>
+                        <p class="m-0 user-bio">####</p>
+                        <p class="m-0 user-location">####</p>
+                        <button class="text-uppercase register-user btn btn-success btn-sm mt-2">cadastrar</button>
+                        <button class="text-uppercase cancel-user btn btn-danger btn-sm mt-2">cancelar</button>
+                    </div>
+                </div>
+
                 <div class="row">
-                    <form class="col col-12 col-sm-6 col-md-6 mx-auto" name="search-form" id="search-form" method="#" action="#" class="">
-                        
+                    <form class="col col-12 col-sm-6 col-md-6 mx-auto" name="search-form" id="search-form" method="#" action="#">
+                        <input type="text" name="user_name" required class="form-control" placeholder="github user name">
+                        <div class="d-grid mt-2">
+                            <button class="btn btn-primary text-uppercase" type="button">
+                                <span>buscar</span>
+                                <!-- <div class="spinner-grow text-light" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div> -->
+                            </button>
+                        </div>
                     </form>
                 </div>
             </div>

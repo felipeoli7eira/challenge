@@ -1,3 +1,11 @@
 import App from './app.js'
 
-const app = new App()
+let app = new App()
+
+$('#search-form button').click(async () => {
+    let userName = $('input[name=user_name]').val()
+
+    let userData = await app.getUserDataFromGithub(userName)
+
+    app.setUserPreview(userData)
+})
