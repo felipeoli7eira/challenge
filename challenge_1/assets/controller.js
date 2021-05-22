@@ -22,5 +22,19 @@ $('button.btn-delete-user').click(({target}) => {
     app.deleteUser(target.dataset.userid)
 })
 
+$('button.btn-save-user').click(({target}) => {
+    app.update(target.dataset.userid)
+})
+
+$('.cancel-user-search-result').click(() => {
+
+    if (!$('.user-card-preview').hasClass('d-none')) {
+        $('.user-card-preview').addClass('d-none')
+    }
+})
+
 // CassiaSotolani
 // Ryan-Maia
+
+
+// lembrar de remover o usuário do array de usuários

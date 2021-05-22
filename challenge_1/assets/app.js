@@ -99,6 +99,7 @@ export default class App
         $('input[name=edit_user_bio]').val(user.bio)
         $('input[name=edit_user_location]').val(user.location)
         $('button.btn-delete-user').attr('data-userid', user.id)
+        $('button.btn-save-user').attr('data-userid', user.id)
     }
 
     deleteUser(userID)
@@ -114,6 +115,21 @@ export default class App
         $('input[name=edit_user_bio]').val('')
         $('input[name=edit_user_location]').val('')
         $('button.btn-delete-user').attr('data-userid', '')
+    }
+
+    update(userID)
+    {
+        let userRow = $(`table.users-table tbody tr[data-row=${userID}]`)[0]
+
+        userRow.cells[ 0 ].innerHTML = $('input[name=edit_user_name]').val()
+        userRow.cells[ 1 ].innerHTML = $('input[name=edit_user_bio]').val()
+        userRow.cells[ 2 ].innerHTML = $('input[name=edit_user_location]').val()
+
+        if (!$('.box-user-action').hasClass('d-none')) {
+            $('.box-user-action').addClass('d-none')
+        }
+
+        // atualizar em this.app.users.----user---
     }
 
     test()
