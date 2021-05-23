@@ -14,7 +14,7 @@
 
 *
 {
-  font-family: 'Noto Sans JP', sans-serif;
+  font-family: 'Noto Sans JP', sans-serif !important;
 }
 
 </style>
