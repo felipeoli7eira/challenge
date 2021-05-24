@@ -135,27 +135,11 @@ export default class App
 
     delete(user)
     {
-        // $(`table.users-table tbody tr[data-row=${userID}]`).remove()
-
-        console.log(user)
-
-        console.log(this.state.users)
-
-        // let users = this.state.users.reduce(
-        //     (acc, user) => {
-        //         if (user.id != parseInt(user)) {
-        //             acc.push(user)
-        //         }
-
-        //         return acc
-        //     }, []
-        // )
-
-        let users = Array.from(this.state.users).filter(user => parseInt(user.id) == parseInt(user))
-
-        console.log(users)
-
-        return
+        this.state.users.forEach((userObject, index) => {
+            if (userObject.id == user) {
+                this.state.users.splice(index, 1)
+            }
+        })
 
         if (!$('.user-edit').hasClass('d-none')) {
             $('.user-edit').addClass('d-none')
@@ -171,6 +155,8 @@ export default class App
         $('input[name=edit--user-location]')  .val('')
         $('button.btn-delete-user')  .attr('data-userid', '#')
         $('button.btn-save-user')    .attr('data-userid', '#')
+
+        this.updateTableList()
     }
 
     update(userID)
