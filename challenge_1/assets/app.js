@@ -96,8 +96,8 @@ export default class App
         this.state.users.forEach (user => {
             let row = `<tr data-row="${user.id}">
                 <td>${user.name}</td>
-                <td>${user.bio}</td>
-                <td>${user.location}</td>
+                <td>${user.bio || '...'}</td>
+                <td>${user.location || '...'}</td>
                 <td>
                     <button class="show-user-info btn btn-primary btn-sm" data-id="${user.id}">visualizar</button>
                 </td>
@@ -130,7 +130,7 @@ export default class App
         $('input[name=edit--user-bio]')       .val(user.bio)
         $('input[name=edit--user-location]')  .val(user.location)
         $('button.btn-delete-user')  .attr('data-userid', user.id)
-        $('button.btn-save-user')    .attr('data-userid', user.id)
+        $('button.btn-update-user')    .attr('data-userid', user.id)
     }
 
     delete(user)
@@ -161,21 +161,22 @@ export default class App
 
     update(userID)
     {
-        let userRow = $(`table.users-table tbody tr[data-row=${userID}]`)[0]
+        this.state.users.forEach((user, index) => {
+            if (user.id == userID) {
+                this.state.users[index].name = $('input[name=edit--user-name]').val()
+                this.state.users[index].bio = $('input[name=edit--user-bio]').val()
+                this.state.users[index].location = $('input[name=edit--user-location]').val()
+            }
+        })
 
-        userRow.cells[ 0 ].innerHTML = $('input[name=edit_user_name]').val()
-        userRow.cells[ 1 ].innerHTML = $('input[name=edit_user_bio]').val()
-        userRow.cells[ 2 ].innerHTML = $('input[name=edit_user_location]').val()
+        this.updateTableList()
 
-        if (!$('.box-user-action').hasClass('d-none')) {
-            $('.box-user-action').addClass('d-none')
+        if (!$('div.user-edit').hasClass('d-none')) {
+            $('div.user-edit').addClass('d-none')
         }
 
-        // atualizar em this.app.users.----user---
-    }
-
-    test()
-    {
-        console.log('test')
+        if ($('div.user-search').hasClass('d-none')) {
+            $('div.user-search').removeClass('d-none')
+        }
     }
 }

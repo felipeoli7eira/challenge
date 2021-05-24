@@ -15,26 +15,13 @@ $('button.preview--user-save-btn').click(() => {
 })
 
 $('button.preview--user-cancel-btn').click(() => {
-
     app.cancelSearchResult()
-})
-
-
-$('button.show-user-info').click(element => {
-    console.log(element)
 })
 
 $('button.btn-delete-user').click(({target}) => {
     app.delete(target.dataset.userid)
 })
 
-$('button.btn-save-user').click(({target}) => {
+$('button.btn-update-user').click(({target}) => {
     app.update(target.dataset.userid)
 })
-
-
-// CassiaSotolani
-// Ryan-Maia
-
-
-// lembrar de remover o usuário do array de usuários
