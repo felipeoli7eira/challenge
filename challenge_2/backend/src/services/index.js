@@ -6,4 +6,8 @@ module.exports = (app) => {
     app.get('/products', (req, res) => {
         return Product.index(req, res)
     })
-};
+
+    app.post('/product', (req, res) => {
+        return Product.insert(req, res)
+    })
+}

@@ -1,26 +1,56 @@
 const NeDB = require('nedb')
-const Database = new NeDB(
-    {
-        filename: 'database.db',
-        autoload: true
-    }
-)
+const DB = new NeDB({filename: 'database.db', autoload: true})
 
 class Product
 {
-    // constructor()
-    // {
-    // }
-
-    index(request, response)
+    read()
     {
-        Database.insert({product: 'teste', desc: 'desc', price: '12.55'}, (error, result) => {
-            if (!error) {
-                return response.status(201).json({error: false, result})
-            }
+        try
+        {
+            
+        }
+        catch(err)
+        {
+            return response.status(500).json(
+                {
+                    error: true,
+                    data: err
+                }
+            )
+        }
+    }
 
-            return response.status(500).json({error: true})
-        })
+    insert(request, response)
+    {
+        try
+        {
+            DB.insert(request.body, (error, data) => {
+                if (!error) {
+                    return response.status(201).json(
+                        {
+                            error: false,
+                            data
+                        }
+                    )
+                }
+
+                return response.status(501).json(
+                    {
+                        error: true,
+                        data: error
+                    }
+                )
+            })
+        }
+        catch(error)
+        {
+            return response.status(501).json(
+                {
+                    error: true,
+                    data: error
+                }
+            )
+        }
     }
 }
 
