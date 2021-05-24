@@ -31,6 +31,37 @@ class Product
         }
     }
 
+    readOne(request, response)
+    {
+        try
+        {
+            DB.findOne({_id: request.params.id}, (err, data) => {
+                if (!err) {
+                    return response.status(200).json(
+                        {
+                            error: false, data
+                        }
+                    )
+                }
+
+                return response.status(500).json(
+                    {
+                        error: true, data: err
+                    }
+                )
+            })
+        }
+        catch(err)
+        {
+            return response.status(500).json(
+                {
+                    error: true,
+                    data: err
+                }
+            )
+        }
+    }
+
     insert(request, response)
     {
         try
@@ -66,11 +97,34 @@ class Product
 
     edit(request, response)
     {
-
+        try
+        {
+        }
+        catch(err)
+        {
+            return response.status(500).json(
+                {
+                    error: true,
+                    data: err
+                }
+            )
+        }
     }
 
     destroy(request, response)
     {
+        try
+        {
+        }
+        catch(err)
+        {
+            return response.status(500).json(
+                {
+                    error: true,
+                    data: err
+                }
+            )
+        }
     }
 }
 
