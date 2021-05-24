@@ -21,7 +21,7 @@
             <h4>lista de produtos</h4>
           </div>
 
-          <table class="table table-primary table-striped">
+          <table class="table table-striped">
               <thead>
                 <tr>
                   <th scope="col">produto</th>
