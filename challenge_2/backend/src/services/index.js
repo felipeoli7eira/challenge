@@ -4,7 +4,7 @@ const Product = require('./../model/Product')
 module.exports = (app) => {
 
     app.get('/products', (req, res) => {
-        return Product.index(req, res)
+        return Product.read(req, res)
     })
 
     app.post('/product', (req, res) => {

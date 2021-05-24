@@ -3,11 +3,22 @@ const DB = new NeDB({filename: 'database.db', autoload: true})
 
 class Product
 {
-    read()
+    read(request, response)
     {
         try
         {
-            
+            DB.find({}).exec((err, data) => {
+                if (!err) {
+                    return response.status(200).json({error: false, data})
+                }
+
+                return response.status(500).json(
+                    {
+                        error: true,
+                        data: err
+                    }
+                )
+            })
         }
         catch(err)
         {
