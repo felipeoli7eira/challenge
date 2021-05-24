@@ -63,6 +63,15 @@ class Product
             )
         }
     }
+
+    edit(request, response)
+    {
+
+    }
+
+    destroy(request, response)
+    {
+    }
 }
 
 module.exports = new Product
