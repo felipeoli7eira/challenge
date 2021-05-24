@@ -19,6 +19,14 @@ form.search button
     font-weight: 700
 }
 
+table tbody tr td
+{
+    white-space: nowrap !important;
+    max-width: 80px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 table thead tr th
 {
     font-weight: 500;

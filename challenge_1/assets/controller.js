@@ -25,7 +25,7 @@ $('button.show-user-info').click(element => {
 })
 
 $('button.btn-delete-user').click(({target}) => {
-    app.deleteUser(target.dataset.userid)
+    app.delete(target.dataset.userid)
 })
 
 $('button.btn-save-user').click(({target}) => {

@@ -82,6 +82,9 @@ export default class App
         }
 
         this.state.currentUser = {}
+
+        $('input[name=search_user_name]').val('')
+        $('input[name=search_user_name]').focus()
     }
 
     updateTableList()
@@ -110,35 +113,64 @@ export default class App
 
     showUserInfo({target})
     {
-        let user = Array.from(this.app.users).filter(
+        let user = Array.from(this.state.users).filter(
             user => user.id === parseInt(target.dataset.id)
         ) [ 0 ]
 
-        if ($('.box-user-action').hasClass('d-none')) {
-            $('.box-user-action').removeClass('d-none')
+        if ($('.user-edit').hasClass('d-none')) {
+            $('.user-edit').removeClass('d-none')
         }
 
-        $('img.edit_user_photo').attr('src', user.photo)
-        $('input[name=edit_user_name]').val(user.name)
-        $('input[name=edit_user_bio]').val(user.bio)
-        $('input[name=edit_user_location]').val(user.location)
-        $('button.btn-delete-user').attr('data-userid', user.id)
-        $('button.btn-save-user').attr('data-userid', user.id)
+        if (!$('.user-search').hasClass('d-none')) {
+            $('.user-search').addClass('d-none')
+        }
+
+        $('img.edit--user-avatar')            .attr('src', user.photo)
+        $('input[name=edit--user-name]')      .val(user.name)
+        $('input[name=edit--user-bio]')       .val(user.bio)
+        $('input[name=edit--user-location]')  .val(user.location)
+        $('button.btn-delete-user')  .attr('data-userid', user.id)
+        $('button.btn-save-user')    .attr('data-userid', user.id)
     }
 
-    deleteUser(userID)
+    delete(user)
     {
-        $(`table.users-table tbody tr[data-row=${userID}]`).remove()
+        // $(`table.users-table tbody tr[data-row=${userID}]`).remove()
 
-        if (!$('.box-user-action').hasClass('d-none')) {
-            $('.box-user-action').addClass('d-none')
+        console.log(user)
+
+        console.log(this.state.users)
+
+        // let users = this.state.users.reduce(
+        //     (acc, user) => {
+        //         if (user.id != parseInt(user)) {
+        //             acc.push(user)
+        //         }
+
+        //         return acc
+        //     }, []
+        // )
+
+        let users = Array.from(this.state.users).filter(user => parseInt(user.id) == parseInt(user))
+
+        console.log(users)
+
+        return
+
+        if (!$('.user-edit').hasClass('d-none')) {
+            $('.user-edit').addClass('d-none')
         }
 
-        $('img.edit_user_photo').attr('src', '')
-        $('input[name=edit_user_name]').val('')
-        $('input[name=edit_user_bio]').val('')
-        $('input[name=edit_user_location]').val('')
-        $('button.btn-delete-user').attr('data-userid', '')
+        if ($('.user-search').hasClass('d-none')) {
+            $('.user-search').removeClass('d-none')
+        }
+
+        $('img.edit--user-avatar')            .attr('src', '')
+        $('input[name=edit--user-name]')      .val('')
+        $('input[name=edit--user-bio]')       .val('')
+        $('input[name=edit--user-location]')  .val('')
+        $('button.btn-delete-user')  .attr('data-userid', '#')
+        $('button.btn-save-user')    .attr('data-userid', '#')
     }
 
     update(userID)
