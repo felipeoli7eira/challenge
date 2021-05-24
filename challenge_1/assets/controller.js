@@ -2,17 +2,23 @@ import App from './app.js'
 
 let app = new App()
 
-$('#search-form button').click(async () => {
-    let userName = $('input[name=user_name]').val()
-    let userData = await app.getUserDataFromGithub(userName)
+$('form.search button').click(async () => {
+    let userName = $('input[name=search_user_name]').val()
+    let userData = await app.getUserDataFromGithubAPI(userName)
 
-    app.setUserPreview(userData)
+    app.userPreview(userData)
 })
 
-$('button.register-user').click(() => {
-    app.registerUser()
-    app.updateTableItens()
+$('button.preview--user-save-btn').click(() => {
+    app.save()
+    app.updateTableList()
 })
+
+$('button.preview--user-cancel-btn').click(() => {
+
+    app.cancelSearchResult()
+})
+
 
 $('button.show-user-info').click(element => {
     console.log(element)
@@ -26,12 +32,6 @@ $('button.btn-save-user').click(({target}) => {
     app.update(target.dataset.userid)
 })
 
-$('.cancel-user-search-result').click(() => {
-
-    if (!$('.user-card-preview').hasClass('d-none')) {
-        $('.user-card-preview').addClass('d-none')
-    }
-})
 
 // CassiaSotolani
 // Ryan-Maia

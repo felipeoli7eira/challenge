@@ -10,12 +10,26 @@
 
 body
 {
-    background-color: #f5f5f5;
+    background-color: #e6e6e6 !important;
 }
 
-button
+form.search button
 {
-    font-weight: 700 !important;
-    text-transform: uppercase !important;
-    font-size: 10px !important
+    font-size: 13px;
+    font-weight: 700
+}
+
+table thead tr th
+{
+    font-weight: 500;
+}
+
+table thead tr th:first-child
+{
+    border-top-left-radius: 4px;
+}
+
+table thead tr th:last-child
+{
+    border-top-right-radius: 4px;
 }

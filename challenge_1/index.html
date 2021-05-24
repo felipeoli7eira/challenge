@@ -4,69 +4,70 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>iColabora | Challange 1 | Felipe Oliveira</title>
+        <title>iColabora</title>
         <link rel="stylesheet" href="./assets/app.css">
         <link rel="stylesheet" href="./libs/bootstrap-5.0.1-dist/css/bootstrap.css">
     </head>
     <body>
-        <main>
-            <div class="container mt-5">
-                <div class="row  mb-5 user-card-preview d-none">
-                    <div class="col col-3 ms-auto">
-                        <img class="d-block mx-auto user-photo" width="150" height="150" src="https://via.placeholder.com/150" alt="user profile photo">
-                    </div>
-                    <div class="col col-3 me-auto text-center p-3 user-data">
-                        <h6 class="user-name">####</h6>
-                        <p class="m-0 user-bio">####</p>
-                        <p class="m-0 user-location">####</p>
-                        <button class="text-uppercase register-user btn btn-success btn-sm mt-2">cadastrar</button>
-                        <button class="text-uppercase cancel-user-search-result btn btn-danger btn-sm mt-2">cancelar</button>
+        <main class="container mt-5">
+
+            <div class="row user-preview d-none">
+                <div class="col col-3 mx-auto shadow-sm p-3 mb-5 bg-white rounded">
+                    <img
+                        src="https://via.placeholder.com/150/"
+                        class="d-block mx-auto preview--user-avatar-info mb-3"
+                        width="150"
+                        height="150"
+                        alt="foto do usuário"
+                    >
+                    <h6 class="preview--user-name-info"></h6>
+                    <p class="m-0 preview--user-bio-info"></p>
+                    <p class="preview--user-location-info"></p>
+
+                    <div class="text-end">
+                        <button class="btn btn-sm btn-secondary preview--user-cancel-btn">cancelar</button>
+                        <button class="btn btn-sm btn-primary preview--user-save-btn">salvar</button>
                     </div>
                 </div>
+            </div>
 
-                <div class="box-user-action mb-5 d-none">
-                    <div class="row">
-                        <div class="col col-6 mx-auto">
-                            <form action="#" class="edit">
-                                <img width="100" height="100" class="d-block edit_user_photo mb-2" src="https://via.placeholder.com/150" alt="user">
-                                <input type="text" name="edit_user_name" class="form-control mb-2">
-                                <input type="text" name="edit_user_bio" class="form-control mb-2">
-                                <input type="text" name="edit_user_location" class="form-control mb-2">
-                                <button type="button" class="btn btn-danger btn-sm btn-delete-user" data-userid="#">deletar usuário</button>
-                                <button type="button" class="btn btn-success btn-sm btn-save-user" data-userid="#">salvar</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
+            <div class="box-user-action mb-5 d-none">
                 <div class="row">
-                    <form class="col col-12 col-sm-6 col-md-6 mx-auto" name="search-form" id="search-form" method="#" action="#">
-                        <input type="text" name="user_name" required class="form-control" placeholder="github user name">
-                        <div class="d-grid mt-2">
-                            <button class="btn btn-primary text-uppercase" type="button">
-                                <span>buscar</span>
-                                <!-- <div class="spinner-grow text-light" role="status">
-                                    <span class="visually-hidden">Loading...</span>
-                                </div> -->
-                            </button>
-                        </div>
-                    </form>
-                </div>
-
-                <div class="row mt-5">
                     <div class="col col-6 mx-auto">
-                        <table class="table users-table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Nome</th>
-                                    <th scope="col">Bio</th>
-                                    <th scope="col">Localidade</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            </tbody>
-                        </table>
+                        <form action="#" class="edit">
+                            <img width="100" height="100" class="d-block edit_user_photo mb-2" src="https://via.placeholder.com/150" alt="user">
+                            <input type="text" name="edit_user_name" class="form-control mb-2">
+                            <input type="text" name="edit_user_bio" class="form-control mb-2">
+                            <input type="text" name="edit_user_location" class="form-control mb-2">
+                            <button type="button" class="btn btn-danger btn-sm btn-delete-user" data-userid="#">deletar usuário</button>
+                            <button type="button" class="btn btn-success btn-sm btn-save-user" data-userid="#">salvar</button>
+                        </form>
                     </div>
+                </div>
+            </div>
+
+            <div class="row user-search">
+                <form class="col col-6 mx-auto search">
+                    <input type="text" name="search_user_name" required class="form-control" placeholder="Busque por um usuário do github">
+                    <div class="d-grid mt-2">
+                        <button class="btn btn-primary" type="button">BUSCAR</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col col-6 mx-auto">
+                    <table class="table users-table">
+                        <thead>
+                            <tr class="bg-white">
+                                <th class="border-0" scope="col">Nome</th>
+                                <th class="border-0" scope="col">Bio</th>
+                                <th class="border-0" scope="col">Localidade</th>
+                                <th class="border-0" scope="col">#</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
                 </div>
             </div>
         </main>

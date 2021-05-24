@@ -2,84 +2,108 @@ export default class App
 {
     constructor()
     {
-        console.log('running...')
+        this.state = {
+            api: "https://api.github.com",
 
-        this.app = {
-            api_url: "https://api.github.com",
-
-            user: {},
+            currentUser: {},
             users: []
         }
     }
 
-    async getUserDataFromGithub(userName)
+    async getUserDataFromGithubAPI(userName)
     {
-        return await $.get(
-            `${this.app.api_url}/users/${userName}`,
-            (response) => response
-        )
+        return await $.get(`${this.state.api}/users/${userName}`, (response) => response)
     }
 
-    setUserPreview(user)
+    userPreview(user)
     {
-        this.app.user = user
+        this.state.currentUser = user
 
-        const boxUserPreview = $('.user-card-preview')
-        let photo = $('.user-photo')
-        let name = $('.user-name')
-        let bio = $('.user-bio')
-        let location = $('.user-location')
+        let componentUserPreview = $('.user-preview')
+        let componentUserSearch  = $('.user-search')
 
-        if (boxUserPreview.hasClass('d-none')) {
-            boxUserPreview.removeClass('d-none')
-        }
+
+        let photo    = $('.preview--user-avatar-info')
+        let name     = $('.preview--user-name-info')
+        let bio      = $('.preview--user-bio-info')
+        let location = $('.preview--user-location-info')
 
         photo.attr('src', user.avatar_url)
         name.html(user.name)
         bio.html(user.bio)
         location.html(user.location)
+
+        if (componentUserPreview.hasClass('d-none')) {
+            componentUserPreview.removeClass('d-none')
+        }
+
+        if (!componentUserSearch.hasClass('d-none')) {
+            componentUserSearch.addClass('d-none')
+        }
     }
 
-    registerUser()
+    cancelSearchResult()
     {
-        this.app.users.push(
+        let componentUserPreview = $('.user-preview')
+        let componentUserSearch  = $('.user-search')
+
+        if (!componentUserPreview.hasClass('d-none')) {
+            componentUserPreview.addClass('d-none')
+        }
+
+        if (componentUserSearch.hasClass('d-none')) {
+            componentUserSearch.removeClass('d-none')
+        }
+
+        this.state.currentUser = {}
+    }
+
+    save()
+    {
+        let componentUserPreview =$('.user-preview')
+        let componentUserSearch = $('.user-search')
+
+        this.state.users.push(
             {
-                id: this.app.user.id,
-                photo: this.app.user.avatar_url,
-                name: this.app.user.name,
-                bio: this.app.user.bio,
-                location: this.app.user.location
+                id: this.state.currentUser.id,
+                photo: this.state.currentUser.avatar_url,
+                name: this.state.currentUser.name,
+                bio: this.state.currentUser.bio,
+                location: this.state.currentUser.location
             }
         )
 
-        if (! $('.user-card-preview').hasClass('d-none')) {
-            $('.user-card-preview').addClass('d-none')
+        if (!componentUserPreview.hasClass('d-none')) {
+            componentUserPreview.addClass('d-none')
         }
 
-        this.app.user = {}
+        if (componentUserSearch.hasClass('d-none')) {
+            componentUserSearch.removeClass('d-none')
+        }
+
+        this.state.currentUser = {}
     }
 
-    updateTableItens()
+    updateTableList()
     {
-        const table = $('.users-table tbody')
+        let table = $('.users-table tbody')
 
         table.html('')
 
-        this.app.users.forEach (user => {
+        this.state.users.forEach (user => {
             let row = `<tr data-row="${user.id}">
                 <td>${user.name}</td>
                 <td>${user.bio}</td>
                 <td>${user.location}</td>
                 <td>
-                    <button class="show-user-info btn btn-primary btn-sm" data-id="${user.id}">info</button>
+                    <button class="show-user-info btn btn-primary btn-sm" data-id="${user.id}">visualizar</button>
                 </td>
             </tr>`
 
             table.append(row)
         })
 
-        Array.from($('button.show-user-info')).forEach( button => {
-
+        Array.from($('button.show-user-info')).forEach(button => {
             button.onclick = (event) => this.showUserInfo(event)
         } )
     }
