@@ -36,7 +36,7 @@
                   <td>{{product.desc}}</td>
                   <td>R$ {{product.price}}</td>
                   <td>
-                    <button @click="delete(product._id)" class="btn btn-danger btn-sm">deletar</button>
+                    <button @click="destroy(product._id)" class="btn btn-danger btn-sm">deletar</button>
                     <button class="btn btn-secondary btn-sm">editar</button>
                   </td>
                 </tr>
@@ -95,8 +95,11 @@
       insert() {},
       edit() {},
       update() {},
-      delete(id) {
-        
+      destroy(id) {
+        axios.delete('http://localhost:3030/product/' + id).then(response => {
+          console.log(response)
+          this.getProducts()
+        }).catch(err => console.log(err))
       }
     }
   }
