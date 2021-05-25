@@ -188,6 +188,11 @@
 
         this.create = create
       }
+    },
+
+    created()
+    {
+      this.getProducts()
     }
   }
 </script>
