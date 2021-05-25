@@ -46,6 +46,27 @@
 <script>
   export default {
     name: 'App',
+    data() {
+      return {
+        currentProduct: {},
+        products: [],
+      }
+    },
+
+    methods: {
+
+      populateTable()
+      {
+      },
+
+      read() {
+        
+      },
+      readOne() {},
+      create() {},
+      edit() {},
+      update() {}
+    }
   }
 </script>
 
