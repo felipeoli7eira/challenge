@@ -10,4 +10,6 @@ module.exports = (app) => {
     app.post('/product', (req, res) => Product.insert(req, res))
 
     app.put('/product/:id', (req, res) => Product.edit(req, res))
+
+    app.delete('/product/:id', (req, res) => Product.destroy(req, res))
 }

@@ -137,6 +137,23 @@ class Product
     {
         try
         {
+            DB.remove({_id: request.params.id}, {}, (err) => {
+                if (!err) {
+                    return response.status(200).json(
+                        {
+                            error: false,
+                            data: request.params.id
+                        }
+                    )
+                }
+
+                return response.status(500).json(
+                    {
+                        error: true,
+                        data: err
+                    }
+                )
+            })
         }
         catch(err)
         {
