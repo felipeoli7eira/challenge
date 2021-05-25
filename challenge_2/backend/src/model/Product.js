@@ -99,6 +99,28 @@ class Product
     {
         try
         {
+            DB.update({_id: request.params.id}, request.body, (err) => {
+                if (!err) {
+                    return response.status(200).json(
+                        {
+                            error: false,
+                            data: {
+                                _id: request.params.id,
+                                name: request.body.name,
+                                desc: request.body.desc,
+                                price: request.body.price
+                            }
+                        }
+                    )
+                }
+
+                return response.status(500).json(
+                    {
+                        error: true,
+                        data: err
+                    }
+                )
+            })
         }
         catch(err)
         {
