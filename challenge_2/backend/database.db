@@ -1,6 +1,15 @@
-{"product":"teste","desc":"desc","price":"12.55","_id":"AMPMCi3NWtgr19EE"}
-{"name":"new name","desc":"new desc","price":"1.2","_id":"HlqF0pwfFh57g1eL"}
-{"product":"teste","desc":"desc","price":"12.55","_id":"VBU3kPxGDHKL5Sfd"}
-{"$$deleted":true,"_id":"HlqF0pwfFh57g1eL"}
-{"$$deleted":true,"_id":"VBU3kPxGDHKL5Sfd"}
-{"$$deleted":true,"_id":"AMPMCi3NWtgr19EE"}
+{"name":"produto teste","desc":"descricao teste","price":"1","_id":"2vYK2W6RBvCsHqSc"}
+{"name":"a","desc":"a","price":0,"_id":"TuMBJNyix8uIFOiS"}
+{"name":"b","desc":"b","price":0,"_id":"JYxKjdo7Sk2YrRoT"}
+{"name":"c","desc":"c","price":0,"_id":"WD3rnSqM0Qz9C9Tg"}
+{"name":"c","desc":"c","price":0,"_id":"6AQD68lsbegEDSP4"}
+{"name":"d","desc":"d","price":0,"_id":"troxHRvVuw3H5rT1"}
+{"name":"c","desc":"s","price":"4","_id":"osIwYfec1paIZ378"}
+{"name":"aa","desc":"aa","price":0,"_id":"qqhdclTLFIrZUmvd"}
+{"name":"zz","desc":"zz","price":0,"_id":"zV5807xiCwtkJWkZ"}
+{"name":"zz","desc":"zz","price":0,"_id":"UFA07hWbrT28iXVL"}
+{"name":"ascac","desc":"asc","price":0,"_id":"uObAQT9RspFH9xSK"}
+{"name":"ascascasc","desc":"ascasc","price":0,"_id":"xzIFT0lO6cE5jwg9"}
+{"name":"ascascasc","desc":"ascasc","price":0,"_id":"d17JRMUapX2FU5FW"}
+{"name":"a","desc":"as","price":0,"_id":"EslGO92lrORPmPUb"}
+{"_id":"gN54myRyqAISKNMk"}

@@ -9,10 +9,10 @@
 
         <div class="col col-4">
           <form class="p-1 product-data pt-5">
-            <input type="text" name="product_name" class="form-control mb-1" placeholder="Nome">
-            <input type="text" name="product_desc" class="form-control mb-1" placeholder="Descrição">
-            <input type="text" name="product_price" class="form-control mb-3" placeholder="Preço">
-            <button type="button" class="btn btn-primary btn-block">salvar</button>
+            <input v-model="product.name" type="text" name="product_name" class="form-control mb-1" placeholder="Nome">
+            <input v-model="product.desc" type="text" name="product_desc" class="form-control mb-1" placeholder="Descrição">
+            <input v-model="product.price" type="text" name="product_price" class="form-control mb-3" placeholder="Preço">
+            <button @click="submit()" type="button" class="btn btn-primary btn-block">{{create ? 'salvar' : 'atualizar'}}</button>
           </form>
         </div>
 
@@ -21,6 +21,7 @@
             <h4>lista de produtos</h4>
           </div>
 
+          <button @click="getProducts()">buscar</button>
           <table class="table table-striped">
               <thead>
                 <tr>
@@ -30,10 +31,14 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>Feijão</td>
-                  <td>Feijão de minas</td>
-                  <td>R$ 15,00</td>
+                <tr v-for="product in products" :key="product._id">
+                  <td>{{product.name}}</td>
+                  <td>{{product.desc}}</td>
+                  <td>R$ {{product.price}}</td>
+                  <td>
+                    <button @click="delete(product._id)" class="btn btn-danger btn-sm">deletar</button>
+                    <button class="btn btn-secondary btn-sm">editar</button>
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -44,28 +49,55 @@
 </template>
 
 <script>
+
+  import axios from 'axios'
+
   export default {
     name: 'App',
     data() {
       return {
-        currentProduct: {},
-        products: [],
+        create: true,
+        product: {
+          name: '',
+          desc: '',
+          price: 0
+        },
+        products: []
       }
     },
 
     methods: {
 
-      populateTable()
+      submit()
       {
+        if (this.create === true) {
+          axios.post('http://localhost:3030/product')
+          .then(response => console.log(response))
+          .catch(err => console.log(err))
+        }
+      },
+
+      getProducts()
+      {
+        axios.get('http://localhost:3030/products').then(response => {
+          this.products = response.data.data
+        })
+        .catch(err => console.log(err))
+  },
+
+      populateTable() {
+
       },
 
       read() {
-        
       },
       readOne() {},
-      create() {},
+      insert() {},
       edit() {},
-      update() {}
+      update() {},
+      delete(id) {
+        
+      }
     }
   }
 </script>
