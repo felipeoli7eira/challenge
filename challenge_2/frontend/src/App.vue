@@ -37,7 +37,7 @@
                   <td>R$ {{product.price}}</td>
                   <td>
                     <button @click="destroy(product._id)" class="btn btn-danger btn-sm">deletar</button>
-                    <button class="btn btn-secondary btn-sm">editar</button>
+                    <button @click="edit(product._id)" class="btn btn-secondary btn-sm">editar</button>
                   </td>
                 </tr>
               </tbody>
@@ -60,7 +60,8 @@
         product: {
           name: '',
           desc: '',
-          price: 0
+          price: 0,
+          _id: ''
         },
         products: []
       }
@@ -75,6 +76,19 @@
           .then(response => console.log(response))
           .catch(err => console.log(err))
         }
+        else {
+          axios.put('http://localhost:3030/product/' + this.product._id, { name: this.product.name, desc: this.product.desc, price: this.product.price })
+          .then(response => {
+            console.log(response)
+
+            this.create = true
+            this.product.name = ''
+            this.product.desc = ''
+            this.product.price = ''
+            this.product._id = ''
+          })
+          .catch(err => console.log(err))
+        }
       },
 
       getProducts()
@@ -83,23 +97,24 @@
           this.products = response.data.data
         })
         .catch(err => console.log(err))
-  },
-
-      populateTable() {
-
       },
 
-      read() {
-      },
-      readOne() {},
-      insert() {},
-      edit() {},
-      update() {},
-      destroy(id) {
+      destroy(id)
+      {
         axios.delete('http://localhost:3030/product/' + id).then(response => {
           console.log(response)
           this.getProducts()
         }).catch(err => console.log(err))
+      },
+
+      edit(id)
+      {
+        this.create = false
+
+        let productFroEdit = this.products.filter(product => product._id == id)
+
+        this.product = productFroEdit [0]
+        console.log(this.product)
       }
     }
   }
