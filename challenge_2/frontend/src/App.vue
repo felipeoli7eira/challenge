@@ -55,7 +55,6 @@
             <h4 class="rounded shadow p-3 bg-white">Lista de produtos</h4>
           </div>
 
-          <button @click="getProducts()">buscar</button>
           <table class="table table-striped">
               <thead>
                 <tr>
@@ -91,6 +90,9 @@
     name: 'App',
     data() {
       return {
+
+        api: 'http://localhost:3030',
+
         create: true,
 
         product: {
@@ -106,71 +108,83 @@
 
     methods: {
 
-      submit()
+      submit() // create and update
       {
         if (this.create === true)
         {
-          let product = {
+          let data = {
             name: this.product.name,
             desc: this.product.desc,
             price: this.product.price
           }
 
-          axios.post('http://localhost:3030/product', product)
-          .then(response => {
-            console.log(response)
-            this.resetForm()
-          })
-          .catch(err => console.log(err))
+          axios.post(`${this.api}/product`, data)
+          .then(
+            // eslint-disable-next-line
+            response => {
+              this.resetForm()
+              this.getProducts()
+            }
+          )
+          .catch(
+            err => console.log(err)
+          )
         }
         else {
-          axios.put('http://localhost:3030/product/' + this.product._id, { name: this.product.name, desc: this.product.desc, price: this.product.price })
-          .then(response => {
-            console.log(response)
 
-            this.create = true
-            this.product.name = ''
-            this.product.desc = ''
-            this.product.price = ''
-            this.product._id = ''
-          })
+          let data = {
+            name: this.product.name,
+            desc: this.product.desc,
+            price: this.product.price
+          }
+
+          axios.put(`${this.api}/product/${this.product._id}`, data)
+          .then(
+            // eslint-disable-next-line
+            response => {
+              this.resetForm()
+              this.getProducts()
+            }
+          )
           .catch(err => console.log(err))
         }
       },
 
       getProducts()
       {
-        axios.get('http://localhost:3030/products').then(response => {
-          this.products = response.data.data
-        })
+        axios.get(`${this.api}/products`)
+        .then(
+          response => {
+            this.products = response.data.data
+          }
+        )
         .catch(err => console.log(err))
       },
 
       destroy(id)
       {
-        axios.delete('http://localhost:3030/product/' + id).then(response => {
-          console.log(response)
-          this.getProducts()
-        }).catch(err => console.log(err))
+        axios.delete(`${this.api}/product/${id}`)
+        .then(
+          // eslint-disable-next-line
+          response => {
+            this.getProducts()
+          }
+        ).catch(err => console.log(err))
       },
 
       edit(id)
       {
         this.create = false
-
-        let productFroEdit = this.products.filter(product => product._id == id)
-
-        this.product = productFroEdit [0]
-        console.log(this.product)
+        let productForEdit = this.products.filter(product => product._id == id)
+        this.product = productForEdit [0]
       },
 
       resetForm(create = true)
       {
-
         this.product._id = ''
         this.product.name = ''
         this.product.desc = ''
-        this.product.pricee = ''
+        this.product.price = ''
 
         this.create = create
       }
